@@ -17,9 +17,10 @@ jobs:
         id: linked-issues
         with:
           access-token: ${{ secrets.GH_TOKEN }}
-      - name: When pull_request is review_requested, move the connected issue to the In Review column
+      
+      - name: Move Issues to Column
         if: github.event_name == 'pull_request' && github.event.action == 'review_requested'
-        uses: kin/gh-action-move-issue-to-column@v1.0
+        uses: kin/gh-action-move-issues-to-column@v1.0
         with:
           access-token: ${{ secrets.GH_TOKEN }}
           target-column: "In Review"
