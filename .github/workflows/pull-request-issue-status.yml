@@ -9,7 +9,7 @@ on:
 jobs:
   connect:
     runs-on: ubuntu-latest
-       steps:
+    steps:
       - name: When pull_request is review_requested, move the connected issue to the In Review column
         if: github.event_name == 'pull_request' && github.event.action == 'review_requested'
         uses: wktk/github-project-connect-action@v1.1.1
