@@ -1,0 +1,25 @@
+name: Pull request issue status sync
+
+on:
+  pull_request:
+    types: [review_requested]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+       steps:
+      - name: When pull_request is review_requested, move the connected issue to the In Review column
+        if: github.event_name == 'pull_request' && github.event.action == 'review_requested'
+        uses: wktk/github-project-connect-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          column-url: https://github.com/shainadube/github-actions/projects/1#column-12896903
+
+      - name: When pull_request_review is approved, move the connected issue to In QA column
+        if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
+        uses: wktk/github-project-connect-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          column-url: https://github.com/shainadube/github-actions/projects/1#column-12897470
