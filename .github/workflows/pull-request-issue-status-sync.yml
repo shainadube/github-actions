@@ -7,7 +7,7 @@ on:
     types: [submitted]
 
 jobs:
-  connect:
+  sync-status:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
