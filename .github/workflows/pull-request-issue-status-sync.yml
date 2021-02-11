@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Get Linked Issues Action
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_review'
         uses: kin/gh-action-get-linked-issues@v1.0
         id: linked-issues
         with:
@@ -43,4 +44,4 @@ jobs:
         with:
           access-token: ${{ secrets.GH_TOKEN }}
           target-column: "In Deploy"
-          issues: ${{ steps.linked-issues.outputs.issues }}
+          issues: ${{ github.event.issue.number }}
