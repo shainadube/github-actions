@@ -18,17 +18,18 @@ jobs:
         with:
           access-token: ${{ secrets.GH_TOKEN }}
       
-      - name: Move Issues to Column
+      - name: Move Issue to In Review Column
         if: github.event_name == 'pull_request' && github.event.action == 'review_requested'
         uses: kin/gh-action-move-issues-to-column@v1.0
         with:
           access-token: ${{ secrets.GH_TOKEN }}
           target-column: "In Review"
-          #column-url: https://github.com/shainadube/github-actions/projects/1#column-12896903
+          issues: ${{ steps.linked-issues.outputs.issues }}
 
-      - name: When pull_request_review is approved, move the connected issue to In QA column
+      - name: Move Issue to In QA Column
         if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
-        uses: wktk/github-project-connect-action@v1.1.1
+        uses: kin/gh-action-move-issues-to-column@v1.0
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
-          column-url: https://github.com/shainadube/github-actions/projects/1#column-12897470
+          access-token: ${{ secrets.GH_TOKEN }}
+          target-column: "In QA"
+          issues: ${{ steps.linked-issues.outputs.issues }}
