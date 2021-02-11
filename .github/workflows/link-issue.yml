@@ -12,3 +12,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GH_TOKEN }}
           position: top
+          branch-prefix: test-
