@@ -1,12 +1,12 @@
-name: Move assigned pull requests into In Progress
+name: Add default label
 
 on:
   issues:
     types: [opened]
 jobs:
-  triage:
+  label:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/labeler@v3
+      - uses: d-i-bondarenko/project-labeler@v0.2.0
         with:
           repo-token: ${{ secrets.GH_TOKEN }}
