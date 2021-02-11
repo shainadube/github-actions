@@ -1,7 +1,7 @@
 name: Move assigned pull requests into In Progress
 
 on:
-  pull_request:
+  issue:
     types: [assigned]
 
 jobs:
@@ -12,4 +12,4 @@ jobs:
         with:
           project: Test
           column: In Progress
-          repo-token: ${{ secrets.GITHUB_TOKEN }}  
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
