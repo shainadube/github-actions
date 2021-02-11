@@ -1,0 +1,14 @@
+name: Link pull requests to issues based on branch prefix
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  sync:
+  runs-on: ubuntu-latest
+    - name: Add an issue link
+  uses: tkt-actions/add-issue-links@v1.4.0
+  with:
+    repo-token: ${{ secrets.GH_TOKEN }}
+    position: top
