@@ -1,4 +1,4 @@
 projects:
-  - match: Test
-  labels:
-    - required: ["Default"]
+  - match: *
+    labels: # List of label's rules
+      - required: ["Default"]
