@@ -1,4 +1,4 @@
-name: Pull request issue status sync
+name: Update linked issue status before and after review
 
 on:
   pull_request:
